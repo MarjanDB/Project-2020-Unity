@@ -6,7 +6,7 @@ using UnityEngine.Android;
 public class GPS : MonoBehaviour
 {
     public Text gpsOut;
-    public bool isUpdating;
+    private bool isUpdating;
 
     public LocationInfo Location
     {
