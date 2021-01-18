@@ -7,30 +7,33 @@ public class GPS : MonoBehaviour
 {
     public Text gpsOut;
     public bool isUpdating;
+
+    public LocationInfo Location
+    {
+        get;
+        private set;
+    }
+    
+
     private void Update()
     {
-        if (!isUpdating)
+        if (isUpdating)
         {
-            StartCoroutine(GetLocation());
-            isUpdating = !isUpdating;
+            gpsOut.text = "Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp;
+            Location = Input.location.lastData;
         }
     }
-    IEnumerator GetLocation()
+    IEnumerator Start()
     {
-        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
-        {
-            Permission.RequestUserPermission(Permission.FineLocation);
-            Permission.RequestUserPermission(Permission.CoarseLocation);
-        }
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser)
-            yield return new WaitForSeconds(10);
+            yield break;
 
         // Start service before querying location
         Input.location.Start();
 
         // Wait until service initializes
-        int maxWait = 10;
+        int maxWait = 20;
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {
             yield return new WaitForSeconds(1);
@@ -40,7 +43,6 @@ public class GPS : MonoBehaviour
         // Service didn't initialize in 20 seconds
         if (maxWait < 1)
         {
-            gpsOut.text = "Timed out";
             print("Timed out");
             yield break;
         }
@@ -48,16 +50,17 @@ public class GPS : MonoBehaviour
         // Connection has failed
         if (Input.location.status == LocationServiceStatus.Failed)
         {
-            gpsOut.text = "Unable to determine device location";
             print("Unable to determine device location");
             yield break;
         }
         else
         {
-            string output = "Latitude " + Input.location.lastData.latitude + " Longitude " + Input.location.lastData.longitude;
-            gpsOut.text = output;
             // Access granted and location value could be retrieved
-            print("Latitude: " + Input.location.lastData.latitude + " Longitude" + Input.location.lastData.longitude + " Altitude" + Input.location.lastData.altitude + " else" + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
+            isUpdating = true;
+            print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
         }
+
+        // Stop service if there is no need to query location updates continuously
+        //Input.location.Stop();
     }
 }
