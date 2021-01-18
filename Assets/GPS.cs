@@ -54,13 +54,10 @@ public class GPS : MonoBehaviour
         }
         else
         {
-            gpsOut.text = "Latitude: " + Input.location.lastData.latitude + " Longitude" + Input.location.lastData.longitude + " Altitude" + Input.location.lastData.altitude + 100f + " else" + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp;
+            string output = "Latitude " + Input.location.lastData.latitude + " Longitude " + Input.location.lastData.longitude;
+            gpsOut.text = output;
             // Access granted and location value could be retrieved
             print("Latitude: " + Input.location.lastData.latitude + " Longitude" + Input.location.lastData.longitude + " Altitude" + Input.location.lastData.altitude + " else" + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
         }
-
-        // Stop service if there is no need to query location updates continuously
-        isUpdating = !isUpdating;
-        Input.location.Stop();
     }
 }
