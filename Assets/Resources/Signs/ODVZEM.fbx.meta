@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3b18427921699f54dad98c7397a4e08e
+guid: e06c7d8ce68ce9e4c8910a58c7a08413
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,18 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: cd7a13a1aee6d6642adf07d995af6a12, type: 2}
+      name: RED
+    second: {fileID: 2100000, guid: b0cf09d75c92a0e49b176e099edffc5a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: red
-    second: {fileID: 2100000, guid: 53564ea287d5d6b44b24428322198e6b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: white
-    second: {fileID: 2100000, guid: aeb0a6253c3081b4b8f8d680f8a90d79, type: 2}
+      name: WHITE
+    second: {fileID: 2100000, guid: ee75766b97bc005489a65ddae2d8e187, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -56,8 +51,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

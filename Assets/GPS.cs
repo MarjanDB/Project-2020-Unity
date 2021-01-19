@@ -6,7 +6,12 @@ using UnityEngine.Android;
 public class GPS : MonoBehaviour
 {
     public Text gpsOut;
-    private bool isUpdating;
+
+    public bool isUpdating
+    {
+        get;
+        private set;
+    }
 
     public LocationInfo Location
     {
@@ -30,7 +35,7 @@ public class GPS : MonoBehaviour
             yield break;
 
         // Start service before querying location
-        Input.location.Start();
+        Input.location.Start(1, 1);
 
         // Wait until service initializes
         int maxWait = 20;
@@ -56,11 +61,14 @@ public class GPS : MonoBehaviour
         else
         {
             // Access granted and location value could be retrieved
+            Location = Input.location.lastData;
             isUpdating = true;
             print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
         }
 
         // Stop service if there is no need to query location updates continuously
         //Input.location.Stop();
+
+        //after first init, generate positions
     }
 }

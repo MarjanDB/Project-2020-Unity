@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "EHT7N19420006299",
+    "m_SelectedDeviceId": "emulator-5554",
     "m_SelectedPackage": {
-        "deviceId": "EHT7N19420006299",
+        "deviceId": "emulator-5554",
         "name": "com.DefaultCompany.ProjectUnity",
-        "processId": 6523,
+        "processId": 16199,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -30,6 +30,12 @@
             "deviceId": "emulator-5554",
             "name": "com.DefaultCompany.ProjectUnity",
             "processId": 26175,
+            "exited": true
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.DefaultCompany.ProjectUnity",
+            "processId": 16199,
             "exited": false
         },
         {
